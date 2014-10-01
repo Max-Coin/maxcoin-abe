@@ -83,7 +83,8 @@ def hash_160_to_bc_address(h160, version="\x00"):
   if not have_crypto:
     return ''
   vh160 = version+h160
-  h3=SHA256.new(SHA256.new(vh160).digest()).digest()
+  #h3=SHA256.new(SHA256.new(vh160).digest()).digest()
+  h3=util.sha3_256(vh160)
   addr=vh160+h3[0:4]
   return b58encode(addr)
 
